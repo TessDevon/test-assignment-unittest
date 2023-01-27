@@ -80,3 +80,7 @@ describe("createHml", () => {
         expect(runTodo?.children[runTodo?.children.length-1].classList[0]).toBe("todo__text")
     });
 });
+
+//toggleTodo
+
+//displayError
