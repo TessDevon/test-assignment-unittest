@@ -21,17 +21,17 @@ document.getElementById("clearTodos")?.addEventListener("click", () => {
   }
 );
 
-function createNewTodo(todoText: string, todos: Todo[]) {
+export function createNewTodo(todoText: string, todos: Todo[]) {
   let result = addTodo(todoText, todos);
 
   if (result.success) {
-    createHtml(todos);
+    exports.createHtml(todos);
   } else {
-    displayError(result.error, true);
+    exports.displayError(result.error, true);
   }
 }
 
-function createHtml(todos: Todo[]) {
+export function createHtml(todos: Todo[]) {
   localStorage.setItem("todos", JSON.stringify(todos));
 
   let todosContainer: HTMLUListElement = document.getElementById(
@@ -62,7 +62,7 @@ function toggleTodo(todo: Todo) {
   createHtml(todos);
 }
 
-function displayError(error: string, show: boolean) {
+export function displayError(error: string, show: boolean) {
   let errorContainer: HTMLDivElement = document.getElementById(
     "error"
   ) as HTMLDivElement;
@@ -81,4 +81,4 @@ function clearTodos(todos: Todo[]) {
   createHtml(todos);
 }
 
-createHtml(todos);
+//createHtml(todos);
