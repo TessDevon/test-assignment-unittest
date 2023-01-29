@@ -80,23 +80,43 @@ describe("createHml", () => {
         expect(runTodo?.children[runTodo?.children.length-1].classList[0]).toBe("todo__text")
     });
 });
-/*
-test ("toggleTodoStartChangeTodoAndCreateHtml", () => {
-    //Arrage
-    let todoExampleTrue = ("baka");
-    let testTodo = new Todo(todoExampleTrue, true);
-    let spyOnChangeTodo = jest.spyOn(main, "changeTodo").mockReturnValue();
-    let spyOncreateHtml = jest.spyOn(main, "createHtml").mockReturnValue();
+
+
+describe("createHml", () => {
+/*  test("testIfToggleTodoIsCalled", () => {
+        //Arrage
+        document.body.innerHTML = `
+        <ul id="todos" class="todo"></ul>
+        `
+        let spyOnToggleTodo =jest.spyOn(main,"toggleTodo").mockReturnValue();
+        let todoExampleCreate = ("middag");
+        let todos: Todo[] = [];
+        todos.push(new Todo(todoExampleCreate, true));
+
+        //Act
+        main.createHtml(todos);    
+        let runTodo = document.querySelector("#todos");
+
+        //Assert
+        expect(spyOnToggleTodo).toHaveBeenCalled();
+        spyOnToggleTodo.mockRestore();
+        });
+        */
     
-    //Act
-    main.toggleTodo(testTodo);
+    test ("toggleTodoStartChangeTodoAndCreateHtml", () => {
+        //Arrage
+        let todoExampleTrue = ("baka");
+        let testTodo = new Todo(todoExampleTrue, true);
+        let spyOncreateHtml = jest.spyOn(main, "createHtml").mockReturnValue();
     
-    //Assert
-    expect(spyOnChangeTodo).toHaveBeenCalled();
-    expect(spyOncreateHtml).toHaveBeenCalled();
-    spyOnChangeTodo.mockRestore();
-    spyOncreateHtml.mockRestore();
-});*/
+        //Act
+        main.toggleTodo(testTodo);
+    
+        //Assert
+        expect(spyOncreateHtml).toHaveBeenCalled();
+        spyOncreateHtml.mockRestore();
+    });
+});
 
 describe("displayError", () => {
     test("displayErrorTrue", () => {
