@@ -9,6 +9,24 @@ import { Todo } from "../ts/models/Todo";
 beforeEach(() => {
     document.body.innerHTML = "";
 });
+/*
+test("testIfToggleTodoIsCalled", () => {
+    //Arrage
+    document.body.innerHTML = `
+    <ul id="todos" class="todo">
+    <li class="todo"></li>
+    </ul>`;
+
+    main.createHtml([new Todo("middag", true)]);   
+    let spyOnToggleTodo =jest.spyOn(main,"toggleTodo");//.mockReturnValue();
+
+    //Act
+    document.querySelector("li")?.click(); 
+
+    //Assert
+    expect(spyOnToggleTodo).toHaveBeenCalled();
+    //spyOnToggleTodo.mockRestore();
+});*/
 
 describe("createNewTodo", () => {
     test ("createNewTodoSuccesfulAdd", () => {
@@ -44,7 +62,7 @@ describe("createNewTodo", () => {
 });
 
 describe("createHml", () => {
-    test ("createHml,done", () => {
+    test ("createHmlDone", () => {
         //Arrage
         document.body.innerHTML = `
         <ul id="todos" class="todo"></ul>
@@ -62,7 +80,7 @@ describe("createHml", () => {
         expect(runTodo?.children[runTodo?.children.length-1].classList[0]).toBe("todo__text--done")
     });
 
-    test ("createHml,done", () => {
+    test ("createHmlNotDone", () => {
         //Arrage
         document.body.innerHTML = `
         <ul id="todos" class="todo"></ul>
@@ -81,41 +99,19 @@ describe("createHml", () => {
     });
 });
 
-
-describe("createHml", () => {
-/*  test("testIfToggleTodoIsCalled", () => {
-        //Arrage
-        document.body.innerHTML = `
-        <ul id="todos" class="todo"></ul>
-        `
-        let spyOnToggleTodo =jest.spyOn(main,"toggleTodo").mockReturnValue();
-        let todoExampleCreate = ("middag");
-        let todos: Todo[] = [];
-        todos.push(new Todo(todoExampleCreate, true));
-
-        //Act
-        main.createHtml(todos);    
-        let runTodo = document.querySelector("#todos");
-
-        //Assert
-        expect(spyOnToggleTodo).toHaveBeenCalled();
-        spyOnToggleTodo.mockRestore();
-        });
-        */
     
-    test ("toggleTodoStartChangeTodoAndCreateHtml", () => {
-        //Arrage
-        let todoExampleTrue = ("baka");
-        let testTodo = new Todo(todoExampleTrue, true);
-        let spyOncreateHtml = jest.spyOn(main, "createHtml").mockReturnValue();
+test ("toggleTodoStartChangeTodoAndCreateHtml", () => {
+    //Arrage
+    let todoExampleTrue = ("baka");
+    let testTodo = new Todo(todoExampleTrue, true);
+    let spyOncreateHtml = jest.spyOn(main, "createHtml").mockReturnValue();
     
-        //Act
-        main.toggleTodo(testTodo);
+    //Act
+    main.toggleTodo(testTodo);
     
-        //Assert
-        expect(spyOncreateHtml).toHaveBeenCalled();
-        spyOncreateHtml.mockRestore();
-    });
+    //Assert
+    expect(spyOncreateHtml).toHaveBeenCalled();
+    spyOncreateHtml.mockRestore();
 });
 
 describe("displayError", () => {
@@ -164,3 +160,4 @@ test ("spyOnCreateHtmlInFunctionClearTodos", () => {
     spy.mockRestore();
 
 });
+

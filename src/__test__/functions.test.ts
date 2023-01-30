@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { addTodo, changeTodo, removeAllTodos } from "../ts/functions";
+import { addTodo, changeTodo, removeAllTodos, sortByName } from "../ts/functions";
 import { Todo } from "../ts/models/Todo";
 
 beforeEach(() => {
@@ -72,4 +72,38 @@ test ("removeAllTodos",() => {
 
     //Assert
     expect(todos.length).toBe(0);
+});
+
+describe("changeTodo", () => {
+    test ("sortByNameMixedTodos",() => {
+        //Arrage
+        let todos: Todo[] = [new Todo("Handla", true), new Todo("Baka", true)];
+
+        //Act 
+        sortByName(todos);
+
+        //Assert
+        expect(todos[1].text).toBe("Handla");
+    });
+    test ("sortByNameOrderedTodos",() => {
+        //Arrage
+        let todos: Todo[] = [new Todo("Baka", true), new Todo("Handla", true)];
+
+        //Act 
+        sortByName(todos);
+
+        //Assert
+        expect(todos[1].text).toBe("Handla");
+    });
+    test ("sortByNameSameTodos",() => {
+        //Arrage
+        let todos: Todo[] = [new Todo("Handla", true), new Todo("Handla", true)];
+
+        //Act 
+        sortByName(todos);
+
+        //Assert
+        expect(todos[1].text).toBe("Handla");
+    });
+
 });
